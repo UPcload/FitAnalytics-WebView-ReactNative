@@ -1,0 +1,28 @@
+{
+  "name": "FitAnalytics-WebView-ReactNative",
+  "version": "0.0.1",
+  "description": "WebView-based integration with Fit Analytics Fit Finder widget for React Native",
+  "main": "./index.js",
+  "scripts": {
+    "release": "semantic-release"
+  },
+  "author": "Fit Analytics GmbH",
+  "homepage": "https://github.com/UPcload/FitAnalytics-WebView-ReactNative",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/UPcload/FitAnalytics-WebView-ReactNative.git"
+  },
+  "license": "MIT",
+  "keywords": [
+    "react-native"
+  ],
+  "peerDependencies": {
+    "react": "^16.0",
+    "react-native": ">=0.41.2",
+    "react-native-webview": ">=0.41.2"
+  },
+  "files": [
+    "lib",
+    "index.js"
+  ]
+}
