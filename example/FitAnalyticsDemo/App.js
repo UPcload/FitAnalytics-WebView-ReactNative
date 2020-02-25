@@ -10,10 +10,40 @@ import {
   TextInput,
 } from 'react-native'
 
-import { FitAnalyticsWidget } from 'FitAnalytics-WebView-ReactNative'
+import { FitAnalyticsWidget, PurchaseReporter } from '@fitanalytics/webview-reactnative'
+
+const reporter = new PurchaseReporter({
+  // set some purchase defaults
+  "shop": "widgetpreview",
+  "shopCountry": "US",
+  "shopLanguage": "en",
+  "currency": "usd"
+})
 
 function Separator() {
   return <View style={styles.separator} />
+}
+
+function getRandomString() {
+  return Math.random().toString(36).slice(2)
+}
+
+function generatePurchaseReports(total) {
+  let shop = "widgetpreview"
+  let orderId = `order-${getRandomString()}`
+  let userId = `user-${getRandomString()}`
+  let out = []
+
+  for (let i = 0, n = total; i < n; i++) {
+    out.push({
+      "productSerial": `widgetpreview-${getRandomString()}`,
+      "userId": userId,
+      "orderId": orderId,
+      "price": Math.floor(Math.random() * 100),
+    })
+  }
+
+  return out
 }
 
 export default function App() {
@@ -22,6 +52,19 @@ export default function App() {
   const [status, setStatus] = React.useState("Init")
   const [isOpen, setIsOpen] = React.useState(false)
   const widget = React.useRef(null)
+
+  const reportPurchases = function () {
+    let reports = generatePurchaseReports(Math.ceil(Math.random() * 10))
+    reporter.sendReports(reports)
+    .then((res) => {
+      console.log("Reported", res)
+      setStatus("Reported")
+    })
+    .catch((err) => {
+      console.error("Error reporting", err)
+      setStatus(`Error reporting: ${ err }`)
+    })
+  }
  
   return (
     <SafeAreaView style={styles.container}>
@@ -42,7 +85,7 @@ export default function App() {
           }}
         />
         <Button
-          title="Recommend"
+          title="Rec."
           onPress={() => widget.current.getRecommendation()}
         />
         <Button
@@ -56,6 +99,10 @@ export default function App() {
           title="Close"
           disabled={!isOpen}
           onPress={() => widget.current.close()}
+        />
+        <Button
+          title="ReportPur."
+          onPress={() => reportPurchases()}
         />
       </View>
       <Separator />

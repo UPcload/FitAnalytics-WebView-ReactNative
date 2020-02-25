@@ -1,3 +1,9 @@
 import FitAnalyticsWidget from './lib/FitAnalyticsWidget'
+import PurchaseReport from './lib/PurchaseReport'
+import PurchaseReporter from './lib/PurchaseReporter'
 
-export { FitAnalyticsWidget }
+export {
+  FitAnalyticsWidget,
+  PurchaseReport,
+  PurchaseReporter
+}
