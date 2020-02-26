@@ -39,6 +39,7 @@ function generatePurchaseReports(total) {
       "productSerial": `widgetpreview-${getRandomString()}`,
       "userId": userId,
       "orderId": orderId,
+      "purchasedSize": `${20 + Math.floor(Math.random() * 20)}`,
       "price": Math.floor(Math.random() * 100),
     })
   }

@@ -1,4 +1,4 @@
-#/bin/bash
+#!/bin/bash
 
 # re-install the "@fitanalytics/webview-reactnative" from the source above
 
