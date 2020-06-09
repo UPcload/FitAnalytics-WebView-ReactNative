@@ -52,6 +52,7 @@ export default function App() {
   const [productSerial, setProductSerial] = React.useState(inputValue)
   const [status, setStatus] = React.useState("Init")
   const [isOpen, setIsOpen] = React.useState(false)
+  const [isMounted, setIsMounted] = React.useState(false)
   const widget = React.useRef(null)
 
   const reportPurchases = function () {
@@ -79,7 +80,15 @@ export default function App() {
       </View>
       <View style={styles.control}>
         <Button
+          title={ isMounted ? "Unmount" : "Mount" }
+          onPress={() => {
+            setIsMounted(!isMounted)
+            setIsOpen(isMounted)
+          }}
+        />
+        <Button
           title="Load"
+          disabled={!isMounted}
           onPress={() => {
             setStatus('Loading')
             setProductSerial(inputValue)
@@ -87,19 +96,16 @@ export default function App() {
         />
         <Button
           title="Rec."
+          disabled={!isMounted}
           onPress={() => widget.current.getRecommendation()}
         />
         <Button
-          title="Open"
+          title={isOpen && isMounted ? "Close" : "Open"}
+          disabled={!isMounted}
           onPress={() => {
             setStatus('Opening')
-            widget.current.open()
+            isOpen ? widget.current.close() : widget.current.open()
           }}
-        />
-        <Button
-          title="Close"
-          disabled={!isOpen}
-          onPress={() => widget.current.close()}
         />
         <Button
           title="ReportPur."
@@ -107,7 +113,7 @@ export default function App() {
         />
       </View>
       <Separator />
-      <FitAnalyticsWidget
+      { isMounted && <FitAnalyticsWidget
         ref={widget}
         productSerial={productSerial}
         onLoad={(productSerial, details) => {
@@ -137,7 +143,7 @@ export default function App() {
           setIsOpen(false)
           console.log("ADDED_TO_CART", productSerial, size, details)
         }}
-      />
+      />}
     </SafeAreaView>
   )
 }
