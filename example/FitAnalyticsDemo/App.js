@@ -48,11 +48,12 @@ function generatePurchaseReports(total) {
 }
 
 export default function App() {
-  const [inputValue, setInputValue] = React.useState('widgetpreview-upper-m')
+  const [inputValue, setInputValue] = React.useState(null)
   const [productSerial, setProductSerial] = React.useState(inputValue)
   const [status, setStatus] = React.useState("Init")
-  const [isOpen, setIsOpen] = React.useState(false)
   const [isMounted, setIsMounted] = React.useState(false)
+  const [isReady, setIsReady] = React.useState(false)
+  const [isOpen, setIsOpen] = React.useState(false)
   const widget = React.useRef(null)
 
   const reportPurchases = function () {
@@ -84,11 +85,14 @@ export default function App() {
           onPress={() => {
             setIsMounted(!isMounted)
             setIsOpen(isMounted)
+            if (isMounted) {
+              setIsReady(false)
+            }
           }}
         />
         <Button
           title="Load"
-          disabled={!isMounted}
+          disabled={!(isMounted && isReady)}
           onPress={() => {
             setStatus('Loading')
             setProductSerial(inputValue)
@@ -96,12 +100,12 @@ export default function App() {
         />
         <Button
           title="Rec."
-          disabled={!isMounted}
+          disabled={!(isMounted && isReady)}
           onPress={() => widget.current.getRecommendation()}
         />
         <Button
           title={isOpen && isMounted ? "Close" : "Open"}
-          disabled={!isMounted}
+          disabled={!(isMounted && isReady)}
           onPress={() => {
             setStatus('Opening')
             isOpen ? widget.current.close() : widget.current.open()
@@ -116,6 +120,11 @@ export default function App() {
       { isMounted && <FitAnalyticsWidget
         ref={widget}
         productSerial={productSerial}
+        onReady={() => {
+          setIsReady(true)
+          setStatus(`Ready`)
+          console.log('READY')
+        }}
         onLoad={(productSerial, details) => {
           setStatus(`Loaded ${productSerial}`)
           console.log("LOADED", productSerial, details)
