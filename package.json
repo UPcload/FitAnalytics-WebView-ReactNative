@@ -3,6 +3,7 @@
   "version": "0.0.4",
   "description": "WebView-based integration with Fit Analytics Fit Finder widget for React Native",
   "main": "./index.js",
+  "typings": "./index.d.ts",
   "scripts": {
     "release": "semantic-release"
   },
@@ -26,7 +27,8 @@
   },
   "files": [
     "lib",
-    "index.js"
+    "index.js",
+    "index.d.ts"
   ],
   "directories": {
     "lib": "lib"
