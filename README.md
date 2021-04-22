@@ -22,6 +22,7 @@ Optionally, you can also include the purchase reporting for the order confirmant
 1. **Prerequisities:**
   1. `react-native` module. The integration has been tested with v0.61.x
   2. `react-native-webview` module. The integration has been tested with v8.0.x
+  3. `@react-native-async-storage/async-storage` module. The integration has been tested with v1.13.x
 2. Install `@fitanalytics/webview-reactnative` with
   ```
   npm install -s "@fitanalytics/webview-reactnative"
