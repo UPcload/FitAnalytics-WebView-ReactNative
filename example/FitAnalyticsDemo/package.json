@@ -1,17 +1,32 @@
 {
-  "name": "FitAnalyticsDemo",
-  "version": "0.0.5",
+  "name": "fitanalyticsdemo",
+  "version": "0.0.6",
   "private": true,
   "scripts": {
     "android": "react-native run-android",
     "ios": "react-native run-ios",
-    "start": "react-native start"
+    "start": "react-native start",
+    "test": "jest",
+    "lint": "eslint ."
   },
   "dependencies": {
-    "@fitanalytics/webview-reactnative": "0.0.5",
-    "@react-native-async-storage/async-storage": "^1.13.4",
-    "react": "16.9.0",
-    "react-native": "0.61.5",
-    "react-native-webview": "^8.1.1"
+    "@fitanalytics/webview-reactnative": "0.0.6",
+    "@react-native-async-storage/async-storage": "^1.17.4",
+    "react": "17.0.2",
+    "react-native": "0.68.2",
+    "react-native-webview": "^11.18.2"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.12.9",
+    "@babel/runtime": "^7.12.5",
+    "@react-native-community/eslint-config": "^2.0.0",
+    "babel-jest": "^26.6.3",
+    "eslint": "^7.32.0",
+    "jest": "^26.6.3",
+    "metro-react-native-babel-preset": "^0.67.0",
+    "react-test-renderer": "17.0.2"
+  },
+  "jest": {
+    "preset": "react-native"
   }
 }
