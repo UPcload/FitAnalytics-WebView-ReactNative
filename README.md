@@ -151,6 +151,8 @@ class FitAnalyticsWidget {
 
 ### Purchase reporting on Order-confirmation pages (OCPs)
 
+Providing purchase data not only provides you with insights but also continually enhances the value Fit Finder and our personalized recommendations add to your e-commerce platform. Therefore, we highly recommend you to set up purchase reporting on your end.
+
 The main class for reporting is the `PurchaseRepo`
 
 ```js
