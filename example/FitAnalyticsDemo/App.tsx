@@ -120,6 +120,8 @@ export default function App() {
       { isMounted && <FitAnalyticsWidget
         ref={widget}
         productSerial={productSerial}
+        language="en"
+        shopCountry="US"
         onReady={() => {
           setIsReady(true)
           setStatus(`Ready`)

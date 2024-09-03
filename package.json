@@ -21,8 +21,8 @@
     "react-native"
   ],
   "peerDependencies": {
-    "@react-native-async-storage/async-storage": "^1.13.4",
-    "react": "^16.0",
+    "@react-native-async-storage/async-storage": ">=1.13.4",
+    "react": ">=16.0",
     "react-native": ">=0.41.2",
     "react-native-webview": ">=8.2.0"
   },
