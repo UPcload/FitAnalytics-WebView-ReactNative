@@ -1,6 +1,6 @@
 {
   "name": "@fitanalytics/webview-reactnative",
-  "version": "0.0.6",
+  "version": "0.1.0",
   "description": "WebView-based integration with Fit Analytics Fit Finder widget for React Native",
   "main": "./index.js",
   "typings": "./index.d.ts",
