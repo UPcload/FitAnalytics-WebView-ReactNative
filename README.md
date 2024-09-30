@@ -103,9 +103,6 @@ class FitAnalyticsWidget {
     // preferred units system (0 - metric; 1 - US imperial; 2 - british imperial)
     "metric": Number,
 
-    // Enable or disable the add-to-cart integration
-    "cart": Boolean,
-
     //// CALLBACKS
 
     // the widget has been initialized and can received commands
