@@ -5,17 +5,18 @@
 The SDK allows integrating the Fit Analytics Fit Finder widget into your own React Native app.
 
 As a first step, we suggest that you familiarize yourself with the Fit Analytics web-based Size Advisor service by:  
-1. Reading through the Fit Analytics website and trying out a sample product - https://www.fitanalytics.com/  
-2. Reading through the Fit Analytics web developers guide - http://developers.fitanalytics.com/documentation  
 
-The integration method currently supported by this SDK is based on loading HTML/JS-based widget code in a separate WebView component instance and establishing communication between the host app and the embedded web widget.  
+1. Reading through the Fit Analytics website and trying out a sample product - https://www.fitanalytics.com/  
+2. Reading through the Fit Analytics Native Apps Integration guide - http://developers.fitanalytics.com/native-apps  
+
+The integration method currently supported by this SDK is based on loading HTML/JS-based widget code in a separate WebView component instance and establishing communication between the host app and the embedded web widget.
 
 The SDK introduces a layer that imitates a web-based (JavaScript) integration of the Fit Analytics widget by:  
 1. Exporting the **FitAnalyticsWidget** React Native component.
 2. Creating and initializing the widget in a provided web view instance. Common widget options (e.g. `productSerial` etc) are exposed as props on the component
 3. Exposing several methods that allow controlling the widget.
 
-Optionally, you can also include the purchase reporting for the order confirmantion page/view.
+Optionally, you can also include the purchase reporting for the order confirmation page/view.
 
 ## Getting started
 
@@ -41,6 +42,9 @@ Optionally, you can also include the purchase reporting for the order confirmant
         <FitAnalyticsWidget
           ref={widget}
           productSerial={productSerial}
+          shopPrefix="example"
+          shopCountry="US"
+          shopLanguage="en"
           onLoad={(productSerial, details) => {
             console.log("LOADED", productSerial, details)
           }}
@@ -64,6 +68,9 @@ class FitAnalyticsWidget {
   props = {
     // widget options
     
+    // (required) merchant identifier, issued by Fit Analytics
+    "shopPrefix": String,
+
     // product serial; when the prop changes a new product will be loaded
     // the change may trigger `onLoad` callback
     "productSerial": String,
@@ -84,10 +91,10 @@ class FitAnalyticsWidget {
     // (when applicable) the ISO-code of user's selected language
     "userLanguage": String,
 
-    // the ISO-code of shop's current default language
+    // (required) the ISO-code of shop's current default language
     "shopLanguage": String,
 
-    // the ISO country code of the current shop
+    // (required) the ISO country code of the current shop
     "shopCountry": String,
 
     // the full URL for thumbnail
@@ -174,6 +181,7 @@ class PurchaseReporter {
 // for full description see http://developers.fitanalytics.com/documentation#sales-data-exchange
 class PurchaseReport {
   attributes = {
+    // merchant identifier
     "shop": String,
 
     // product serial (ID)
